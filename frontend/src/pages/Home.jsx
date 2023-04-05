@@ -22,7 +22,7 @@ const Home = () => {
             </div>
             <h1>Traveling opens the door to creating <span className="hightlight"> memories </span></h1>
             <p>
-              Hi
+              Hello thầy
             </p>
           </div>
         </Col>
