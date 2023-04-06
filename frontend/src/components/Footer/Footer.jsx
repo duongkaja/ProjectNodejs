@@ -37,6 +37,9 @@ const quick__links2=[
 ];
 
 const Footer = () => {
+
+  const year = new Date().getFullYear()
+
   return (
     <footer className=' footer'>
       <Container>
@@ -112,16 +115,22 @@ const Footer = () => {
 
                   <ListGroupItem className='ps-0 border-0'
                    align-item-center gap-3>
-                    <h6 className='mb-0 d-flecx align-item-center gap-3'>
+                    <h6 className="mb-0 d-flecx align-item-center gap-3">
                       <span>
                       <i class="ri-cellphone-line"></i>
                       </span>
                       phone:
                     </h6>
-                    <p className='mb-0'> +123456789 </p>
+                    <p className="mb-0"> +123456789 </p>
                   </ListGroupItem> 
 
             </ListGroup> 
+          </Col>
+          <Col lg="12" className="text-center pt-5">
+              <p className="copyright">
+                Copyright {year}, design and develop by Khang. 
+                All rights reserved. 
+              </p>
           </Col>
         </Row>
       </Container>
