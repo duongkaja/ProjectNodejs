@@ -1,25 +1,20 @@
 import React,{useRef} from 'react'
 import './search-bar.css'
-import { Col, Form,FormGroup } from "reactstrap";
-
+import { Col, Form, FormGroup } from "reactstrap";
 
 const SearchBar = () => {   
      const locationRef = useRef('');
      const distanceRef = useRef(0);
      const maxGroupSizeRef = useRef(0);
-
-
-    const searcHandler = () => {
+    const searchHandler = () => {
         const location = locationRef.current.value
         const distance = distanceRef.current.value
         const maxGroupSize = maxGroupSizeRef.current.value
-
         if(location ===''||  distance ==='' ||  maxGroupSize ===''){
             return alert("all field are required!");
         }
     };
-
-  return <col lg='12'>
+  return( <Col lg='12'>
     <div className="search__bar">
         <form className ="d-flex align-items-center gap-4">
             <FormGroup className="d-flex-gap-3 form__group form__group-fast">
@@ -51,12 +46,13 @@ const SearchBar = () => {
                 </div>
             </FormGroup>
 
-                <span className ="search__icon" type='submit' onClick={searcHandler}>
+                <span className ="search__icon" type='submit' onClick={searchHandler}>
                     <i class ="ri-search-line"></i>
                 </span>
         </form>
     </div>
-  </col>
+  </Col>
+  );
 };
 
 export default SearchBar;

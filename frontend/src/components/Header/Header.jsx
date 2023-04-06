@@ -7,16 +7,16 @@ import './header.css';
 
 const nav__links=[
   {
-    path:"/home",
-    display:"Home",
+    path:'/home',
+    display:'Home',
   },
   {
-    path:"/about",
-    display:"About",
+    path:'/#',
+    display:'About',
   },
   {
-    path:"/tours",
-    display:"Tours",
+    path:'/tours',
+    display:'Tours',
   },
 ]
 
@@ -28,7 +28,7 @@ const Header = () => {
 
           {/* ======== logo ======== */}
           <div className='logo'>
-            <img src={logo} alt="" />
+            <img src={logo} alt="" /> 
           </div>
           {/* ======== logo end ======== */}
 
