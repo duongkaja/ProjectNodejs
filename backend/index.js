@@ -35,6 +35,6 @@ app.use(cookieParser());
 app.use("/tours", tourRoute);
 
 app.listen(port, ()=>{
-    app.listen();
-    console.log("server listening on port", port);
+    connect();
+    console.log("server duong listening on port", port);
 } );
