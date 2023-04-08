@@ -26,7 +26,9 @@ export const register = async (req,res) => {
 };
 //dang nhap
 export const login = async (req,res) => {
+
     const email = req.body.email
+
     try {
       const user = await User.findOne({email})
 
@@ -34,19 +36,32 @@ export const login = async (req,res) => {
         return res.status(404).json({success:false, message:'User not found'})
       }
 
-      const checkCorrectPassword = bcrypt.compare(req.body.password, user.password)
+      const checkCorrectPassword = await bcrypt.compare(req.body.password, user.password)
 
       if(!checkCorrectPassword){
         return res.status(401).json({success:false, message:'Incorrect email or password'})
       }
       
-      const { password, role, ...rest } = user.doc;
+      const { password, role, ...rest } = user._doc
 
-      const token =jwt.sign(
-        {id: user.id, role: user.role},
+      //tao jwt token
+      const token = jwt.sign(
+        { id: user._id, role: user.role},
         process.env.JWT_SECRET_KEY,
-        {expiresIn:"16d"}
-      )
+        {expiresIn:"15d"}
+      );
+
+      //chon token từ mạng với cookie và gửi về máy 
+    res.cookie('accessToken', token, {
+        httpOnly: true,
+        expires:token.expiresIn,
+    }).status(200).json({
+        token,
+        data:{...rest},
+        role,
+      })
     } catch (error) {       
+        res.status(500).json({success:false, message:'Failed to login'})
     }
+
 };
