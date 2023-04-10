@@ -1,42 +1,41 @@
-
-import Booking  from "../models/Booking.js";
-
+import Booking from './../models/Booking.js'
 
 
-//create a new Booking
-export const createBooking = async(req, res) => {
-    const newBooking = new Booking(req.body);
-    try {
-        const savedBooking = await newBooking.save()
+// create new booking
+export const createBooking = async(req,res) => {
+   const newBooking = new Booking(req.body)
 
-        res.status(200).json({success:true,message:"Your tour is booked",data: savedBooking})
-    } catch (err) {
-        res.status(500).json({success:true,message:"internal error"})
-    }
+   try {
+      const savedBooking = await newBooking.save()
+
+      res.status(200).json({success:true, message:"Your tour is booked!", data:savedBooking})
+   } catch (error) {
+      res.status(500).json({success:true, message:"Internal server error!"})
+   }
 }
-//single bookings
-export const getBooking = async(req, res) => {
-    const id = req.params.id
 
-    try {
-        const book = await Booking.findById(id)
+// get single booking
+export const getBooking = async(req,res) => {
+   const id = req.params.id
+   
+   try {
+      const book = await Booking.findById(id)
 
-        res.status(200).json({success:true,message:"successful",data: book})
+      res.status(200).json({success:true, message:"Successful!", data:book})
+   } catch (error) {
+      res.status(404).json({success:true, message:"Not Found!"})
+   }
+} 
 
-    } catch (err) {
-        res.status(404).json({success:true,message:"Not found"})
 
-    }
-}
-//all bookings
-export const getAllBooking = async(req, res) => {
-    try {
-        const book = await Booking.findById()
+// get all booking
+export const getAllBooking = async(req,res) => {
+   
+   try {
+      const books = await Booking.find()
 
-        res.status(200).json({success:true,message:"successful",data: book})
-
-    } catch (err) {
-        res.status(404).json({success:true,message:"internal server error"})
-
-    }
-}
+      res.status(200).json({success:true, message:"Successful!", data:books})
+   } catch (error) {
+      res.status(500).json({success:true, message:"Internal server error!"})
+   }
+} 

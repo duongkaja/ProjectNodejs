@@ -24,5 +24,5 @@ const reviewSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-//vovanduong
+
 export default mongoose.model("Review", reviewSchema);
